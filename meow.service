@@ -3,7 +3,7 @@ Description=Python Script Service
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/python3 /sina/ansible_pb/main.py
+ExecStart=/usr/bin/python3 /home/sina/ansible_pb/main.py
 Restart=always
 
 [Install]
