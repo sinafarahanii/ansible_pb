@@ -1,0 +1,29 @@
+- hosts: 127.0.0.1
+  become: yes
+  tasks:
+    - name: Clone the Git repository
+      git:
+        repo: 'git@github.com:sinafarahanii/ansible_pb.git'
+        dest: /home/sina/ansible_pb
+
+    - name: Copy the service file to systemd
+      copy:
+        src: /home/sina/ansible_pb/meow.service
+        dest: /etc/systemd/system/meow.service
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Reload systemd to recognize new service
+      systemd:
+        daemon_reload: yes
+
+    - name: Enable the service to start on boot
+      systemd:
+        name: meow
+        enabled: yes
+
+    - name: Start the service
+      systemd:
+        name: meow
+        state: started
