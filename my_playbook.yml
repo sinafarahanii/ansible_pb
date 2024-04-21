@@ -1,9 +1,11 @@
 - hosts: 127.0.0.1
   become: yes
+  become_method: sudo
   tasks:
     - name: Clone the Git repository
       git:
-        repo: 'git@github.com:sinafarahanii/ansible_pb.git'
+        repo: https://github.com/sinafarahanii/ansible_pb.git
+        force: yes
         dest: /home/sina/ansible_pb
 
     - name: Copy the service file to systemd
